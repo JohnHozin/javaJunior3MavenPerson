@@ -95,7 +95,7 @@ public class Person {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Person person = (Person)  o;
+        Person person = (Person) o;
         return Objects.equals(gender, person.gender) && Objects.equals(firstName, person.firstName) && Objects.equals(lastName, person.lastName) && Objects.equals(country, person.country) && Objects.equals(email, person.email) && Objects.equals(dob, person.dob) && Objects.equals(city, person.city);
     }
 
