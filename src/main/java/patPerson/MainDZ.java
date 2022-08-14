@@ -10,7 +10,6 @@ public class MainDZ {
         // сделать метод который по числу и городу возвращает данное
         // количество людей из этого города
 
-
         ApiPerson apiPerson = new ApiPerson();
         ArrayList<Person> persons = new ArrayList<>();
         try {

@@ -16,6 +16,7 @@ public class ApiPerson {
         ArrayList<Person> persons = new ArrayList<>();
 
         for (int i = 0; i < col; i++) {
+            //while
             HttpClient httpClient = HttpClient.newHttpClient();
             HttpRequest request = HttpRequest.newBuilder().uri(URI.
                     create("https://randomuser.me/api")).build();

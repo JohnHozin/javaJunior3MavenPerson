@@ -31,5 +31,7 @@ public class Main {
 //        });
 
         PersonSort.filter(persons, q -> LocalDateTime.now().getYear() - q.getDob().getYear() > 40);
+
+        
     }
 }
