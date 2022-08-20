@@ -8,12 +8,17 @@ public class Main {
         ApiPerson api = new ApiPerson();
         ArrayList<Person> persons = new ArrayList<>();
         try {
-            persons = api.getApiPersonFromRequest(10);
+            long l = System.currentTimeMillis();
+            persons = api.getApiPersonFromRequest(100);
+
             System.out.println(persons);
+            System.out.print(System.currentTimeMillis() - l);
         } catch (Exception e) {
             //throw new RuntimeException(e);
             e.printStackTrace();
         }
+
+
 
         System.out.println();
 
@@ -30,8 +35,8 @@ public class Main {
 //            return LocalDateTime.now().getYear() - person.getDob().getYear() > 40;
 //        });
 
-        PersonSort.filter(persons, q -> LocalDateTime.now().getYear() - q.getDob().getYear() > 40);
+//        PersonSort.filter(persons, q -> LocalDateTime.now().getYear() - q.getDob().getYear() > 40);
 
-        
+
     }
 }

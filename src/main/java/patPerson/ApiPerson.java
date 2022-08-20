@@ -13,37 +13,54 @@ import java.util.ArrayList;
 public class ApiPerson {
     public ArrayList<Person> getApiPersonFromRequest(int col) throws IOException, InterruptedException {
 
-        ArrayList<Person> persons = new ArrayList<>();
+        //for (int i = 0; i < col; i++) {
+        //while
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder()
+                //.uri(URI.create("https://randomuser.me/api")).build();
+                .uri(URI.create(String.format("https://randomuser.me/api?results=%s", col))).build();
+        HttpResponse<String> response = httpClient
+                .send(request, HttpResponse.BodyHandlers.ofString());
 
-        for (int i = 0; i < col; i++) {
-            //while
-            HttpClient httpClient = HttpClient.newHttpClient();
-            HttpRequest request = HttpRequest.newBuilder().uri(URI.
-                    create("https://randomuser.me/api")).build();
-            HttpResponse<String> response = httpClient.send(request,
-                    HttpResponse.BodyHandlers.ofString());
-
-            persons.add(parcePersonRespon(response.body()));
-        }
-        return persons;
+        return parcePersonResponse(response.body());
     }
 
-    public Person parcePersonRespon(String response) {
-        Person person = new Person();
+    public ArrayList<Person> getApiPersonFromRequestHomeWork(int col) throws IOException, InterruptedException {
 
-        JSONObject fullData = new JSONObject(response).
-                getJSONArray("results").getJSONObject(0);
-        person.setGender(fullData.getString("gender"));
-        person.setFirstName(fullData.getJSONObject("name").getString("first"));
-        person.setLastName(fullData.getJSONObject("name").getString("last"));
-        person.setEmail(fullData.getString("email"));
-        person.setCountry(fullData.getJSONObject("location").getString("country"));
+        //for (int i = 0; i < col; i++) {
+        //while
 
-        ZonedDateTime zonedDateTime = ZonedDateTime.parse(fullData.getJSONObject("dob").
-                getString("date"));
-        person.setDob(zonedDateTime.toLocalDateTime());
-        person.setCity(fullData.getJSONObject("location").getString("city"));
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().uri(
+                URI.create("https://randomuser.me/api")).build();
+        HttpResponse<String> response = httpClient.send(request,
+                HttpResponse.BodyHandlers.ofString());
 
-        return person;
+        return parcePersonResponse(response.body());
+    }
+
+    public ArrayList<Person> parcePersonResponse(String response) {
+        ArrayList<Person> persons = new ArrayList<>();
+        int infoCount = new JSONObject(response).getJSONObject("info").getInt("results");
+
+        for (int i = 0; i < infoCount; i++) {
+            Person person = new Person();
+            JSONObject fullData = new JSONObject(response).
+                    getJSONArray("results").getJSONObject(i);
+
+            person.setGender(fullData.getString("gender"));
+            person.setFirstName(fullData.getJSONObject("name").getString("first"));
+            person.setLastName(fullData.getJSONObject("name").getString("last"));
+            person.setEmail(fullData.getString("email"));
+            person.setCountry(fullData.getJSONObject("location").getString("country"));
+
+            ZonedDateTime zonedDateTime = ZonedDateTime.parse(fullData.getJSONObject("dob").
+                    getString("date"));
+            person.setDob(zonedDateTime.toLocalDateTime());
+            person.setCity(fullData.getJSONObject("location").getString("city"));
+            persons.add(person);
+        }
+
+        return persons;
     }
 }
