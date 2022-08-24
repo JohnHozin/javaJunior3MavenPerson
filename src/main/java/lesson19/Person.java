@@ -111,9 +111,9 @@ public class Person {
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
                 ", email='" + email + '\'' +
                 ", dob=" + dob +
-                ", city='" + city + '\'' +
                 '}' + "\n";
     }
 }

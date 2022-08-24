@@ -28,6 +28,21 @@ public class ApiPerson {
         return persons;
     }
 
+    public Person getApiPersonFromRequestCity() throws IOException, InterruptedException {
+
+        //Person person = new Person();
+        HttpClient httpClient = HttpClient.newHttpClient();
+        HttpRequest request = HttpRequest.newBuilder().GET()
+                .uri(URI.create("https://randomuser.me/api"))
+                .build();
+        HttpResponse<String> response = httpClient
+                .send(request, HttpResponse.BodyHandlers.ofString());
+
+        //person = parcePersonResponse(response.body());
+
+        return parcePersonResponse(response.body());
+    }
+
 
     public Person parcePersonResponse(String response) {
         Person person = new Person();

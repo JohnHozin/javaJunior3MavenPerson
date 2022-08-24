@@ -1,36 +1,31 @@
 package lesson19;
 
-import patPerson.Person;
-import patPerson.Proverka;
-
 import java.util.ArrayList;
 
 public class PersonSort {
-    public static void filter(ArrayList<patPerson.Person> personList, patPerson.Proverka<patPerson.Person> proverka) {
-        for (patPerson.Person p : personList) {
-            if (proverka.test(p)) System.out.println(p);
-        }
-    }
-
-    public static void filterCountry(ArrayList<patPerson.Person> personList, patPerson.Proverka<patPerson.Person> proverka) {
-        for (patPerson.Person p : personList) {
-            if (proverka.test(p)) System.out.println(p);
-        }
-    }
-
-    public static void filterCity(ArrayList<patPerson.Person> personList, Proverka<patPerson.Person> proverkaCity, int proverkaCount) {
+    public static void filter(ArrayList<Person> personList, Proverka<Person> proverka) {
         for (Person p : personList) {
-            if (proverkaCity.test(p)) {
-                if (proverkaCount > 0) {
-                    System.out.println(p);
-                    proverkaCount--;
-                } else {
-                    proverkaCount=0;
-                }
-            }
+            if (proverka.test(p)) System.out.println(p);
         }
-        if (proverkaCount > 0){
-            System.out.println("Недостаточно людей, проживающих в данном городе");
+    }
+
+    public static void filterCountry(ArrayList<Person> personList, Proverka<Person> proverka) {
+        for (Person p : personList) {
+            if (proverka.test(p)) System.out.print(p);
         }
+    }
+
+    public static boolean filterCity(Person personList, Proverka<Person> proverkaCity) {
+        if (proverkaCity.test(personList)) {
+            return true;
+        }
+        return false;
+    }
+
+    public static boolean filterCountryNum(Person personListCo, Proverka<Person> proverkaCity) {
+        if (proverkaCity.test(personListCo)) {
+            return true;
+        }
+        return false;
     }
 }
