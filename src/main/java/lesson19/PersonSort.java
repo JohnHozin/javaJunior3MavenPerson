@@ -22,8 +22,8 @@ public class PersonSort {
         return false;
     }
 
-    public static boolean filterCountryNum(Person personListCo, Proverka<Person> proverkaCity) {
-        if (proverkaCity.test(personListCo)) {
+    public static boolean filterCountryNum(Person personListCo, Proverka<Person> proverkaCountry) {
+        if (proverkaCountry.test(personListCo)) {
             return true;
         }
         return false;

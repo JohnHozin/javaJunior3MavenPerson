@@ -1,4 +1,4 @@
-package lesson20;
+package lesson21;
 
 import patPerson.ApiPerson;
 import patPerson.Person;
@@ -6,7 +6,6 @@ import patPerson.Person;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 public class Main1 {
@@ -27,7 +26,7 @@ public class Main1 {
 
         long l = System.currentTimeMillis();
         IntStream.range(0,300_000).parallel()
-                 .forEach(i::add);
+                .forEach(i::add);
         System.out.println(i.size());
         System.out.println(System.currentTimeMillis() - l);
 

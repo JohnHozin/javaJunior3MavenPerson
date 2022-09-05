@@ -25,19 +25,6 @@ public class ApiPerson {
         return parcePersonResponse(response.body());
     }
 
-    public ArrayList<Person> getApiPersonFromRequestHomeWork(int col) throws IOException, InterruptedException {
-
-        //for (int i = 0; i < col; i++) {
-        //while
-
-        HttpClient httpClient = HttpClient.newHttpClient();
-        HttpRequest request = HttpRequest.newBuilder().uri(
-                URI.create("https://randomuser.me/api")).build();
-        HttpResponse<String> response = httpClient.send(request,
-                HttpResponse.BodyHandlers.ofString());
-
-        return parcePersonResponse(response.body());
-    }
 
     public ArrayList<Person> parcePersonResponse(String response) {
         ArrayList<Person> persons = new ArrayList<>();
